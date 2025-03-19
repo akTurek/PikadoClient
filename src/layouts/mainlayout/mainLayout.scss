@@ -1,0 +1,19 @@
+@import "../../style.scss";
+
+.main {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    background-color: themed(bg);
+    color: themed(textColorSoft);
+    align-items: center;
+    height: 100vh;
+
+    .topLM{
+      position: sticky;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+  }
+}

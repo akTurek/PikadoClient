@@ -1,0 +1,57 @@
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../context/LightDark'
+import "./navbar.scss"
+import { SiDart } from "react-icons/si";
+import { HiMiniUserGroup } from "react-icons/hi2";
+import { MdOutlineGroupAdd } from "react-icons/md";
+import { FaUserLarge } from "react-icons/fa6";
+import { LuLogOut } from "react-icons/lu";
+import { FaRegSun } from "react-icons/fa";
+import { FaRegMoon } from "react-icons/fa";
+import { AuthContext } from '../../context/AuthProvider';
+
+
+const Navbar = () => {
+
+const {theme , changeTheme } = useContext(ThemeContext)
+
+const {logOut} = useContext(AuthContext);
+
+const navigate = useNavigate();
+
+  return (
+    <div className="navbar">
+      <div className="card">
+      <div className="item" onClick={(e)=>navigate("/home")} > 
+          <SiDart className='icon'/>
+          <span>Home</span>
+        </div>
+        <div className="item" onClick={(e)=>navigate("/findgroup")}>
+          <HiMiniUserGroup className='icon'/>
+          <span>Join Group</span>
+        </div>
+        <div className="item" onClick={(e)=>navigate("/newgroup")}>
+          <MdOutlineGroupAdd className='icon'/>
+          <span>Creat Group</span>
+        </div>
+      </div>
+      <div className="card">
+        <div className="item">
+        {theme ? <FaRegMoon className='icon' onClick={changeTheme}/> : <FaRegSun className='icon' onClick={changeTheme}/>}
+        </div>
+          
+        <div className="item">
+          <FaUserLarge className='icon'/>
+          <span>Profile</span>
+        </div>
+        <div className="item" onClick={logOut}>
+          <LuLogOut className='icon'/>
+          <span>Log out</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Navbar

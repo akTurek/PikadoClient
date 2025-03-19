@@ -1,0 +1,76 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+    
+
+    .card{
+        width: 50%;
+        height: 50%;
+        display: flex;
+        border-radius: 20px;
+        background-color: cornflowerblue;
+        overflow: hidden;
+
+        .left{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 40px;
+
+            align-items: center;
+            justify-content: center;
+
+            .inputs{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                input{
+                    height: 40px;
+                    width: 250px;
+                }
+            }
+
+            .buttons{
+                display: flex;
+                flex-direction: row;
+                gap: 40px;
+                
+                button{
+                    border: 0px;
+                    height: 30px;
+                    width: 90px;
+                    background-color: transparent;
+
+                    
+                } :hover{
+                    padding: 2px;
+                    cursor: pointer;
+                    background-color: beige;
+                    
+                }
+            }
+        }
+
+        .right {
+            flex: 1;
+            background-image: url("../../assets/login.webp");
+            background-size: cover;
+            background-position: center;
+            
+
+            h1{
+                color: black;
+                font-weight: bold;
+            }
+            
+        }
+        
+
+    }
+
+
+}

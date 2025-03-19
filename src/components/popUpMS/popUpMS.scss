@@ -1,0 +1,31 @@
+@import "../../style.scss";
+
+.cardPopUpMS {
+  @include themify($themes) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    padding: 10px 20px;
+    background-color: themed(bgSoft);
+    border-top: 2px solid themed(border);
+
+
+    .itemMS{
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        .extendFunPOP{
+            font-size: 20px;
+            color: themed(textColor);
+            
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: themed(bg);
+        }
+    }
+    }
+}

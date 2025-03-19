@@ -1,0 +1,13 @@
+@import "../../style.scss";
+
+.groupsCard {
+  @include themify($themes) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center; 
+    padding: 40px;
+    background-color: themed(bg);
+    }
+}

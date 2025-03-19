@@ -1,0 +1,65 @@
+@import "../../style.scss";
+
+.cardMember {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    background-color: themed(bgSoft);
+    border-radius: 10px;
+    width: 400px;
+    height: fit-content;
+    overflow: hidden;
+    border: 2px solid themed(border);
+    box-shadow: 6px 10px 18px 0px themed(border);
+
+    .upM{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .leftM{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-left: 10px;
+    
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+    
+            input{
+                width: 30px;
+                height: 30px;
+                border-radius: 10px;
+            }
+        }
+    
+        .rightM{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            width: 40px;
+            
+    
+            .extendFun{
+                font-size: 20px;
+                color: themed(textColor);
+            }
+    
+            &:hover{
+                cursor: pointer;
+                background-color: themed(textColorSoft);
+            }
+        }
+    }
+
+    .downM{
+
+    }
+  }
+}
