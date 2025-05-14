@@ -1,18 +1,22 @@
+@import "../../style.scss";
 .register{
+    @include themify($themes) {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: themed(bgSoft);
     
     
 
     .card{
-        width: 50%;
-        height: 50%;
+        width: 800px;
+        height: 400px;
         display: flex;
         border-radius: 20px;
-        background-color: cornflowerblue;
+        background-color: themed(bg);
         overflow: hidden;
+        box-shadow: 6px 10px 18px 0px themed(border);;
 
         .left{
             display: flex;
@@ -29,8 +33,25 @@
                 gap: 20px;
 
                 input{
+                    width: 200px;
                     height: 40px;
-                    width: 250px;
+                    background-color: themed(bgSoft);
+                    color: themed(textColor);
+                    border: 2px solid transparent;
+                    font-size: large;
+                    transition: all 0.3s ease; 
+                    outline: none;
+
+                    &:focus, &.focused{
+                        border-bottom: 2px solid themed(border);
+                    }
+
+                    &:hover {
+                        border-bottom: 2px solid themed(border);
+                        cursor: pointer;
+                      }
+
+
                 }
             }
 
@@ -39,19 +60,22 @@
                 flex-direction: row;
                 gap: 40px;
                 
-                button{
-                    border: 0px;
+                button {
+                    width: 80px;
                     height: 30px;
-                    width: 90px;
-                    background-color: transparent;
-
-                    
-                } :hover{
-                    padding: 2px;
-                    cursor: pointer;
-                    background-color: beige;
-                    
-                }
+                    background-color: themed(bg);
+                    border: none;
+                    color: themed(textColor);
+                    border: 2px solid themed(border);
+                    transition: all 0.3s ease; 
+  
+                    &:hover {
+                      background-color: themed(bgSoft);
+                      border-bottom: 2px solid themed(border);
+                      cursor: pointer;
+                      padding: 0;
+                    }
+                  }
             }
         }
 
@@ -60,11 +84,23 @@
             background-image: url("../../assets/login.webp");
             background-size: cover;
             background-position: center;
+            display: flex;
+            flex-direction: column;
+            gap: 200px;
+            
+            
             
 
             h1{
-                color: black;
+                padding: 0px 10px;
+                color: themed(textColor);
                 font-weight: bold;
+            }
+
+            span{
+                padding: 0px 10px;
+                width: 250px;
+                color: themed(textColor);
             }
             
         }
@@ -72,5 +108,5 @@
 
     }
 
-
+    }
 }

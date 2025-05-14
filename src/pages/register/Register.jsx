@@ -27,7 +27,7 @@ const Register = () => {
     } catch (err) {
       console.log(err);
     }
-    navigate("/login")
+    
    
   }
 

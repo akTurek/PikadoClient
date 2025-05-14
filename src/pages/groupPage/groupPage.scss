@@ -1,0 +1,31 @@
+@import "../../style.scss";
+
+.membersGP {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center; 
+    background-color: themed(bg);
+    padding-bottom: 200px;
+   
+    
+    
+    .membersCompGP{
+       
+       
+    }
+
+
+    .downBarCompGP{
+        position: fixed;
+        bottom: 20px;
+        left: 38%;
+        transform: translateX(-50%);
+        z-index: 1000; 
+    }
+}
+
+    
+}

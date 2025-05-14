@@ -1,0 +1,44 @@
+@import "../../style.scss";
+
+.boxRB{
+    @include themify($themes) {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 0px 30px;
+        flex: 2;
+        position: sticky;
+        top: 120px;
+        height: calc(100vh - 120px);
+        background-color: themed("bg");
+        align-items: center;
+        width: 400px;
+
+      
+
+        
+        .cardGamesRB{
+            display: flex;
+            flex-direction: column;
+            border: 2px solid themed(border);
+            box-shadow: 6px 10px 18px 0px themed(border);
+            width: 400px;
+            height: 300px;
+            border-radius: 10px;
+
+            .topRB{
+                font-weight: bolder;
+                display: flex;
+                align-items: center;
+                border-bottom: 2px solid themed(border);;
+
+                h1{
+                    padding: 0px 20px;
+
+                }
+            }
+        }
+
+        
+    }
+}

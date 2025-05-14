@@ -22,7 +22,8 @@ export const CreateGroup = () => {
         if(newGroupData.password1===newGroupData.password2){
             console.log("se ujema")
             try {
-                await makeRequest.post("/group/newgroup",newGroupData)
+                const data = await makeRequest.post("/group/newgroup",newGroupData,{withCredentials: true})
+                console.log(data)
                
             } catch (error) {
                 console.log(error);

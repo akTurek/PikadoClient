@@ -20,10 +20,15 @@ const {logOut} = useContext(AuthContext);
 
 const navigate = useNavigate();
 
+const handleLogOut = async (e)=>{
+  await logOut();
+  navigate("/login")
+}
+
   return (
     <div className="navbar">
       <div className="card">
-      <div className="item" onClick={(e)=>navigate("/home")} > 
+      <div className="item" onClick={(e)=>navigate("/")} > 
           <SiDart className='icon'/>
           <span>Home</span>
         </div>
@@ -45,7 +50,7 @@ const navigate = useNavigate();
           <FaUserLarge className='icon'/>
           <span>Profile</span>
         </div>
-        <div className="item" onClick={logOut}>
+        <div className="item" onClick={handleLogOut}>
           <LuLogOut className='icon'/>
           <span>Log out</span>
         </div>

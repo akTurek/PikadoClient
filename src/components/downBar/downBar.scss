@@ -1,0 +1,36 @@
+@import "../../style.scss";
+
+.cardDownBar {
+  @include themify($themes) {
+    display: flex;
+    background-color: themed(bgSoft);
+    color: themed(textColorSoft);
+    width: 400px;
+    border: 2px solid themed(border);
+    border-radius: 10px;
+    height: 100px;
+    align-items: center ;
+    justify-content: center;
+    overflow: hidden;
+   
+    
+    
+
+    .itemDB{
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      
+      border: 2px solid themed(border);
+      height: 100px;
+
+      .icon{
+        font-size: 40px;
+        color: themed(textColor);
+    }
+    }
+
+  }
+}

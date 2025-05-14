@@ -6,14 +6,25 @@
     flex-direction: column;
     background-color: themed(bg);
     color: themed(textColorSoft);
-    align-items: center;
-    height: 100vh;
+    position: absolute;
 
     .topLM{
       position: sticky;
-      width: 100%;
       top: 0;
-      z-index: 1000;
+      z-index: 999;
+    }
+
+    .botomMl{
+      display: flex;
+      margin: 20px;
+    
+
+      .outlet{
+        flex: 6;
+      }
+
+     
+     
     }
   }
 }

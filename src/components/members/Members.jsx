@@ -1,28 +1,45 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./members.scss"
 import Member from '../member/Member';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { makeRequest } from '../../helpers/axios';
+import { AuthContext } from '../../context/AuthProvider';
 
 
 const Members = () => {
 
-    const data = [
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-       
-    ];
+  const {groupId} = useParams();
+  const {currentUser}=useContext(AuthContext)
 
+  const getMembers = async ()=>{
+    try {
+      const res = await makeRequest.get(`/members/getmembers/${groupId}`)
+      console.log(res.data)
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  const {data : membersData, isLoading, isError} = useQuery({
+    queryKey:['members', groupId],
+    queryFn: () => getMembers(),
+  })
+
+  if (isLoading) return <div>Loading members...</div>;
+  if (isError) return <div>Error loading members.</div>;
+
+  const { members, owner } = membersData;
+
+  const isOwner = owner == currentUser.id;
+  
   return (
     <div className='cardMembers'>
-        {data.map((member) => (
-                <Member member={member} key={member.id} />
+        {members.map((member) => (
+                <Member member={member} isOwner={isOwner} key={member.id} />
             ))}
-            
+                       
     </div>
   )
 }

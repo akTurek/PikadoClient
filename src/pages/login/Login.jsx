@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './login.scss'
 import { AuthContext } from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const {logInFun }= useContext(AuthContext);
+  const {logInFun, currentUser}= useContext(AuthContext);
 
   const [logInData, setLogInData] = useState({
     username:"",
@@ -23,11 +23,17 @@ const Login = () => {
     e.preventDefault();
     try {
       await logInFun(logInData);
-      //navigate("/home")
     } catch (error) {
       console.log(error);
     }
   };
+
+
+  useEffect(() => {
+    if (currentUser) {
+        navigate("/");
+    }
+}, [currentUser,navigate]);
 
 
   return (

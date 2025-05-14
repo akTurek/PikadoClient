@@ -1,35 +1,25 @@
 import React from 'react';
 import "./groups.scss";
 import Group from '../group/Group';
+import { makeRequest } from '../../helpers/axios';
+import { useQuery } from '@tanstack/react-query';
 
 const Groups = () => {
-    const data = [
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-        { name: "flaming01", id: 1 },
-        { name: "flamingo2", id: 2 },
-        { name: "flaming3", id: 3 },
-        { name: "flaming4", id: 4 },
-    ];
 
+    
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ['myGroups'],
+        queryFn: () => makeRequest.get('/group/mygroups').then(res => res.data),
+      });
+
+      if (isLoading) {
+        return <span>Loading...</span>
+      }
+    
+      if (isError) {
+        return <span>Error: {error?.response?.data || error.message}</span>;        
+      }
+      
     return (
         <div className="groupsCard">
             {data.map((group) => (
