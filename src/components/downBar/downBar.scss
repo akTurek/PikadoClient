@@ -29,8 +29,13 @@
       .icon{
         font-size: 40px;
         color: themed(textColor);
-    }
-    }
+      }
+      &:hover{
+        cursor: pointer;
+        background-color: themed(bg);
+      }
+
+    } 
 
   }
 }

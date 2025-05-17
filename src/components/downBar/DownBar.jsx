@@ -3,24 +3,82 @@ import "./downBar.scss"
 import { RiGamepadLine } from "react-icons/ri";
 import { useParams } from 'react-router-dom';
 import { IoIosLogOut } from "react-icons/io";
+import { makeRequest } from '../../helpers/axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const DownBar = () => {
 
-const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-const leaveGroup = async () => {
+  const {groupId} = useParams();
 
-  try {
+  //////
+  //LEAVE group fun
+  //////
+  const leaveGroup = async () => {
+
+    try {
     
-  } catch (error) {
-    
+      const res = await makeRequest.delete(`/members/leave/${groupId}`)
+      console.log(res.data)
+
+    } catch (error) {
+      throw error
+    }
   }
-}
+
+  const mutationLeave = useMutation({
+    mutationFn: leaveGroup,
+
+    onSuccess:()=> {
+      queryClient.invalidateQueries({queryKey:['members', groupId]})
+    },
+    onError:(error)=>{
+      console.log(error)
+    }
+  })
+
+  const handleLeave = () =>{
+    mutationLeave.mutate();
+  }
+
+  //////
+  //DELETE group fun
+  //////
+  const deleteGroup = async () => {
+
+    try {
+    
+      const res = await makeRequest.delete(`/members/delete/${groupId}`)
+      console.log(res.data)
+
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const mutationDelete = useMutation({
+    mutationFn: deleteGroup,
+
+    onSuccess:()=> {
+      queryClient.invalidateQueries({queryKey:['members', groupId]})
+    },
+    onError:(error)=>{
+      console.log(error)
+    }
+  })
+
+  const handleDelete = () =>{
+    mutationDelete.mutate();
+  }
 
 
 
 
-const {groupId} = useParams(); 
+
+
+
+
 
   return (
     <div className="cardDownBar">
@@ -32,7 +90,7 @@ const {groupId} = useParams();
             <RiGamepadLine className='icon'/>
             <span>Group ID: {groupId}</span>
         </div>
-        <div className="itemDB">
+        <div className="itemDB" onClick = { ()=> handleLeave()}>
             <IoIosLogOut className='icon'/>
             <span>Leave</span>
         </div>

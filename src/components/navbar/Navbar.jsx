@@ -16,9 +16,10 @@ const Navbar = () => {
 
 const {theme , changeTheme } = useContext(ThemeContext)
 
-const {logOut} = useContext(AuthContext);
+const {logOut, currentUser} = useContext(AuthContext);
 
 const navigate = useNavigate();
+
 
 const handleLogOut = async (e)=>{
   await logOut();
@@ -48,7 +49,7 @@ const handleLogOut = async (e)=>{
           
         <div className="item">
           <FaUserLarge className='icon'/>
-          <span>Profile</span>
+          <span>{currentUser?.username || "Guest"}</span>
         </div>
         <div className="item" onClick={handleLogOut}>
           <LuLogOut className='icon'/>
