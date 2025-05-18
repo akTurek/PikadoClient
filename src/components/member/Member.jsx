@@ -8,10 +8,12 @@ import { makeRequest } from '../../helpers/axios';
 import { RiVipCrownLine } from "react-icons/ri";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
+import { CurrentGroup } from "../../context/CurrentGroup";
 
-const Member = ({member, isOwner}) => {
+const Member = ({member}) => {
 
   const {groupId} = useParams();
+  const {currentGroup} = useContext(CurrentGroup)
 
   const queryClient = useQueryClient();
 
@@ -97,7 +99,7 @@ const Member = ({member, isOwner}) => {
           <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
           <h1>{member.username}</h1>
         </div>
-        {isOwner && <div className="rightM" onClick={(e)=>{setTest(!test)}}>
+        {currentGroup.role == "admin" && <div className="rightM" onClick={(e)=>{setTest(!test)}}>
           {test ? <FaArrowUp className='extendFun' /> : <FaArrowDown className='extendFun' />}
         </div>}
       </div>

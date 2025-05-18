@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AuthContextProvider } from "./context/AuthProvider";
 import { ThemeContextProvider } from './context/LightDark';
+import { CurrentGroupProvider } from './context/CurrentGroup';
 
 
 
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ThemeContextProvider>
-        <App />
+        <CurrentGroupProvider>
+          <App />
+        </CurrentGroupProvider>
       </ThemeContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

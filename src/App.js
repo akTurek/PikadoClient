@@ -4,23 +4,25 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
+  useParams,
 } from "react-router-dom";
 
-import './app.scss';
+import "./app.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { AuthContext } from "./context/AuthProvider";
-import { ThemeContext } from "./context/LightDark"; 
+import { ThemeContext } from "./context/LightDark";
 import MainLayout from "./layouts/mainlayout/MainLayout";
 import { CreateGroup } from "./pages/createGroup/CreateGroup";
 import FindGroup from "./pages/findGroup/FindGroup";
-import Members from "./components/members/Members";
 import Groups from "./components/groups/Groups";
 import GroupPage from "./pages/groupPage/GroupPage";
+import { CurrentGroup } from "./context/CurrentGroup";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-  const { theme } = useContext(ThemeContext); // ✅ Access theme context
+  const { theme } = useContext(ThemeContext);
+  const { currentGroup, leveGroupPage } = useContext(CurrentGroup);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -28,6 +30,17 @@ function App() {
     }
     return children;
   };
+
+  function ProtectedGroupRoute({ children }) {
+    const { groupId } = useParams();
+    const { currentGroup } = useContext(CurrentGroup);
+
+    if (!currentGroup || currentGroup.id != groupId) {
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  }
 
   const router = createBrowserRouter([
     {
@@ -38,10 +51,17 @@ function App() {
         </ProtectedRoute>
       ),
       children: [
-        { path: "/", element: <Groups/> },
+        { path: "/", element: <Groups /> },
         { path: "/newgroup", element: <CreateGroup /> },
         { path: "/findgroup", element: <FindGroup /> },
-        { path: "/group/:groupId", element: <GroupPage/>},
+        {
+          path: "/group/:groupId",
+          element: (
+            <ProtectedGroupRoute>
+              <GroupPage />
+            </ProtectedGroupRoute>
+          ),
+        },
       ],
     },
     { path: "/login", element: <Login /> },
@@ -49,7 +69,7 @@ function App() {
   ]);
 
   return (
-    <div className={`theme-${theme ? "dark" : "light"}`}> 
+    <div className={`theme-${theme ? "dark" : "light"}`}>
       <RouterProvider router={router} />
     </div>
   );

@@ -5,12 +5,14 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { makeRequest } from '../../helpers/axios';
 import { AuthContext } from '../../context/AuthProvider';
+import { CurrentGroup } from '../../context/CurrentGroup';
 
 
 const Members = () => {
 
   const {groupId} = useParams();
   const {currentUser}=useContext(AuthContext)
+  const {currentGroup} = useContext(CurrentGroup)
 
   const getMembers = async ()=>{
     try {
@@ -37,7 +39,7 @@ const Members = () => {
   return (
     <div className='cardMembers'>
         {members.map((member) => (
-                <Member member={member} isOwner={isOwner} key={member.id} />
+                <Member member={member} key={member.id} />
             ))}
                        
     </div>

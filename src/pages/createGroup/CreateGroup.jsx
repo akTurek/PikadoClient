@@ -1,6 +1,7 @@
 import React , {useState}from 'react'
 import "./createGroup.scss"
 import { makeRequest } from '../../helpers/axios'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateGroup = () => {
 
@@ -10,7 +11,7 @@ export const CreateGroup = () => {
         password2:"",
     })
 
-
+    const navigate = useNavigate();
 
     const handleChange = (e)=>{
         setNewGroupData(prev=>({...prev,[e.target.name]:e.target.value}))
@@ -24,7 +25,7 @@ export const CreateGroup = () => {
             try {
                 const data = await makeRequest.post("/group/newgroup",newGroupData,{withCredentials: true})
                 console.log(data)
-               
+                navigate("/")
             } catch (error) {
                 console.log(error);
             }

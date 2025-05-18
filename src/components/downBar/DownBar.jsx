@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./downBar.scss"
 import { RiGamepadLine } from "react-icons/ri";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IoIosLogOut } from "react-icons/io";
 import { makeRequest } from '../../helpers/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { CurrentGroup } from '../../context/CurrentGroup';
 
 const DownBar = () => {
 
   const queryClient = useQueryClient();
 
   const {groupId} = useParams();
+
+  const {currentGroup} = useContext(CurrentGroup)
+
+  const navigate = useNavigate();
 
   //////
   //LEAVE group fun
@@ -19,7 +24,7 @@ const DownBar = () => {
 
     try {
     
-      const res = await makeRequest.delete(`/members/leave/${groupId}`)
+      const res = await makeRequest.delete(`/members/leave/${currentGroup.id}`)
       console.log(res.data)
 
     } catch (error) {
@@ -31,7 +36,7 @@ const DownBar = () => {
     mutationFn: leaveGroup,
 
     onSuccess:()=> {
-      queryClient.invalidateQueries({queryKey:['members', groupId]})
+      queryClient.invalidateQueries({queryKey:['members', currentGroup.id]})
     },
     onError:(error)=>{
       console.log(error)
@@ -49,7 +54,7 @@ const DownBar = () => {
 
     try {
     
-      const res = await makeRequest.delete(`/members/delete/${groupId}`)
+      const res = await makeRequest.delete(`/group/delete/${currentGroup.id}`)
       console.log(res.data)
 
     } catch (error) {
@@ -61,7 +66,9 @@ const DownBar = () => {
     mutationFn: deleteGroup,
 
     onSuccess:()=> {
-      queryClient.invalidateQueries({queryKey:['members', groupId]})
+      queryClient.invalidateQueries({queryKey:['members', currentGroup.id]})
+      navigate("/")
+
     },
     onError:(error)=>{
       console.log(error)
@@ -74,12 +81,6 @@ const DownBar = () => {
 
 
 
-
-
-
-
-
-
   return (
     <div className="cardDownBar">
         <div className="itemDB">
@@ -88,14 +89,20 @@ const DownBar = () => {
         </div>
         <div className="itemDB">
             <RiGamepadLine className='icon'/>
-            <span>Group ID: {groupId}</span>
+            <span>Group ID: {currentGroup.id}</span>
         </div>
-        <div className="itemDB" onClick = { ()=> handleLeave()}>
-            <IoIosLogOut className='icon'/>
-            <span>Leave</span>
-        </div>
-        
-    </div>
+        {currentGroup.role === 'admin' ? (
+            <div className="itemDB" onClick={() => handleDelete()}>
+              <IoIosLogOut className='icon'/>
+              <span>Delete</span>
+            </div>
+            ) : (
+            <div className="itemDB" onClick={() => handleLeave()}>
+              <IoIosLogOut className='icon'/>
+              <span>Leave</span>
+            </div>
+          )}
+      </div>
   )
 }
 
