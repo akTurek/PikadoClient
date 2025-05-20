@@ -9,6 +9,7 @@ import { RiVipCrownLine } from "react-icons/ri";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { CurrentGroup } from "../../context/CurrentGroup";
+import { IoTrophyOutline } from "react-icons/io5";
 
 const Member = ({member}) => {
 
@@ -98,6 +99,10 @@ const Member = ({member}) => {
           <input type="checkbox" />
           <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
           <h1>{member.username}</h1>
+          <div className="wins">
+            <IoTrophyOutline className='icon'/>
+            <span>{member.num1st}</span>
+          </div>
         </div>
         {currentGroup.role == "admin" && <div className="rightM" onClick={(e)=>{setTest(!test)}}>
           {test ? <FaArrowUp className='extendFun' /> : <FaArrowDown className='extendFun' />}
@@ -108,7 +113,7 @@ const Member = ({member}) => {
       <div className="cardPopUpMS">
       <div className="itemMS" onClick={ () => handleNewOwner()}>
           <RiVipCrownLine className='extendFunPOP'/>
-          <span>Make Ovner</span>
+          <span>Make Owner</span>
       </div>
       <div className="itemMS" onClick={ () =>handleKickPlayer()}>
           <IoPersonRemoveSharp className='extendFunPOP'/>

@@ -36,6 +36,24 @@
                 height: 30px;
                 border-radius: 10px;
             }
+
+            .wins{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                
+
+               .icon{
+                font-size: 20px;
+                color: themed(textColor);
+            }
+
+                span{
+                    font-size: 20px;
+                    align-items: center;
+                    color: themed(textColor);
+                }
+            }
         }
     
         .rightM{

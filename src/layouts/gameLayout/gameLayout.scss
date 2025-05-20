@@ -1,0 +1,34 @@
+@import "../../style.scss";
+
+.gameLayoutcard {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    background-color: themed(bg);
+    color: themed(textColorSoft);
+    position: absolute;
+
+    .topLG{
+      position: fixed;
+      top: 0;
+    }
+
+    .bottomGL{
+      display: flex;
+      margin: 20px;
+    
+
+      .outGL{
+        flex: 6;
+        overflow: scroll;
+      }
+
+      .barCardGL{
+        
+      }
+
+     
+     
+    }
+  }
+}

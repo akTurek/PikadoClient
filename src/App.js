@@ -18,6 +18,8 @@ import FindGroup from "./pages/findGroup/FindGroup";
 import Groups from "./components/groups/Groups";
 import GroupPage from "./pages/groupPage/GroupPage";
 import { CurrentGroup } from "./context/CurrentGroup";
+import GameLoby from "./pages/gameLoby/GameLoby";
+import GameLayout from "./layouts/gameLayout/GameLayout";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -63,6 +65,15 @@ function App() {
           ),
         },
       ],
+    },
+    {
+      path: "/play",
+      element:(
+        <GameLayout/>
+      ),
+      children:[
+        {path:"", element:<GameLoby/>}
+      ]
     },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },

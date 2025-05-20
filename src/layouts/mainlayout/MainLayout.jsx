@@ -9,8 +9,6 @@ import { CurrentGroup } from '../../context/CurrentGroup'
 
 const MainLayout = () => {
 
-  const {theme} = useContext(ThemeContext)
-
   const location = useLocation();
 
   const {leveGroupPage}= useContext(CurrentGroup)
