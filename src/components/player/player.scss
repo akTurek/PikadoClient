@@ -4,8 +4,9 @@
 .turn{
     @include themify($themes) {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 400px;
         height: 100px;
         border-radius: 10px;
@@ -14,7 +15,12 @@
         background-color: darkgreen;
     
 
-        .left{
+        .upPlayer{
+            display: flex;
+            align-items: center;
+            justify-content: center ;
+            gap: 20px;
+            .left{
             display: flex;
             align-items: center;
             justify-content: center;
@@ -49,6 +55,11 @@
                 size: 50px;            
             }
         }
+        }
+        .downPlayer{
+            height: 15px;
+        }
+        
     }
 }
 
@@ -56,15 +67,81 @@
 .noTurn{
     @include themify($themes) {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 400px;
         height: 100px;
         border-radius: 10px;
         border: 2px solid themed(border);
         box-shadow: 6px 10px 18px 0px themed(border);
     
+        .upPlayer{
+            display: flex;
+            align-items: center;
+            justify-content: center ;
+            gap: 20px;
 
+             .left{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-left: 20px;
+         
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+
+            span{
+                font-size: 30px;
+                align-items: center;
+                color: themed(textColor); 
+            }
+        }  
+        
+        .right{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 20px;
+         
+
+            span{
+                font-size: 30px;
+                align-items: center;
+                color: themed(textColor);
+                size: 50px;            
+            }
+        }
+        }
+       .downPlayer{
+            height: 15px;
+        }
+    }
+}
+
+.finished{
+    @include themify($themes) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 100px;
+        border-radius: 10px;
+        border: 2px solid themed(border);
+        box-shadow: 6px 10px 18px 0px themed(border);
+        background-color: gold;
+    
+       .upPlayer{
+            display: flex;
+            align-items: center;
+            justify-content: center ;
+            gap: 20px;
         .left{
             display: flex;
             align-items: center;
@@ -101,5 +178,9 @@
             }
         }
     }
-}
 
+        .downPlayer{
+            height: 15px;
+        }
+    }
+}

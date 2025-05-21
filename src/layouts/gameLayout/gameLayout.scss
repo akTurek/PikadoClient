@@ -6,16 +6,17 @@
     flex-direction: column;
     background-color: themed(bg);
     color: themed(textColorSoft);
-    position: absolute;
+    height: 100vh;
+   
 
-    .topLG{
-      position: fixed;
-      top: 0;
+    .topgGL{
+      
     }
 
     .bottomGL{
       display: flex;
       margin: 20px;
+      padding-top: 150px;
     
 
       .outGL{
@@ -24,6 +25,9 @@
       }
 
       .barCardGL{
+        flex:2;
+        position: fixed;
+        padding-left: 40px;
         
       }
 

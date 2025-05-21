@@ -1,10 +1,10 @@
 import React from 'react'
 import Players from '../../components/players/Players'
 
+
 const GameLoby = () => {
   return (
     <div className="lobyCard">
-
       <Players/>
     </div>
   )

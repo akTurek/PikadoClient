@@ -8,14 +8,15 @@ const Players = ({}) => {
     const players= [
     {
         name: "GiNeckBite",
-        score: 13,
-        turn: true,
-        id: 1
+        score: 0,
+        turn: false,
+        id: 1,
+        place:1
     },
     {
         name: "PlayerTwo",
         score: 10,
-        turn: false,
+        turn: true,
         id: 2
     },
     {
@@ -30,7 +31,50 @@ const Players = ({}) => {
         turn: false,
         id: 4645,
     },
-    
+       {
+        name: "GiNeckBite",
+        score: 0,
+        turn: false,
+        id: 1,
+        place:1
+    },
+    {
+        name: "PlayerTwo",
+        score: 10,
+        turn: true,
+        id: 2
+    },
+    {
+        name: "PlayerThree",
+        score: 8,
+        turn: false,
+        id: 3
+    },
+    {
+        name: "PlayerFour",
+        score: 7,
+        turn: false,
+        id: 4645,
+    },
+     {
+        name: "PlayerTwo",
+        score: 10,
+        turn: true,
+        id: 2
+    },
+    {
+        name: "PlayerThree",
+        score: 8,
+        turn: false,
+        id: 3
+    },
+    {
+        name: "PlayerFour",
+        score: 7,
+        turn: false,
+        id: 4645,
+    },
+
 ]    
 
 

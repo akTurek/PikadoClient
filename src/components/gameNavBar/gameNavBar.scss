@@ -1,0 +1,52 @@
+@import "../../style.scss";
+
+.gameNavBar {
+  @include themify($themes) {
+    display: flex;
+    background-color: themed(bgSoft);
+    height: 100px;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    position: fixed;
+    
+
+    span{
+        color: themed(textColor);
+        font-size: xx-large;
+    }
+
+    .adminCenter{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        .itemAGNB{
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+
+        .icon{
+            font-size: 40px;
+            color: themed(textColor);
+        }
+        }
+
+    }
+
+    .itemGNB{
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+
+        .icon{
+            font-size: 40px;
+            color: themed(textColor);
+        }
+    }
+
+    
+
+  }
+}
