@@ -7,7 +7,7 @@ import { makeRequest } from '../../helpers/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CurrentGroup } from '../../context/CurrentGroup';
 
-const DownBar = () => {
+const DownBar = ({selectedMembers}) => {
 
   const queryClient = useQueryClient();
 
@@ -79,11 +79,17 @@ const DownBar = () => {
     mutationDelete.mutate();
   }
 
+  //////
+  //Handle invite
+  /////
+  const handleInvite = ()=>{
+    console.log(selectedMembers)
+  }
 
 
   return (
     <div className="cardDownBar">
-        <div className="itemDB">
+        <div className="itemDB" onClick={handleInvite}>
             <RiGamepadLine className='icon'/>
             <span>Invite For Game</span>
         </div>

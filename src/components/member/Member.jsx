@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 import { CurrentGroup } from "../../context/CurrentGroup";
 import { IoTrophyOutline } from "react-icons/io5";
 
-const Member = ({member}) => {
+const Member = ({member, handleSelect}) => {
 
   const {groupId} = useParams();
   const {currentGroup} = useContext(CurrentGroup)
@@ -90,10 +90,16 @@ const Member = ({member}) => {
 
   const [test, setTest] = useState(false)
 
+  const owner = currentGroup.userGroupId == member.id;
+
   const {currentUser}= useContext(AuthContext)
 
+  const handleClick=()=>{
+
+  }
+
   return (
-    <div className="cardMember">
+    <div className="cardMember" onClick={handleClick}>
       <div className="upM">
         <div className="leftM">
           <input type="checkbox" />
@@ -109,7 +115,7 @@ const Member = ({member}) => {
         </div>}
       </div>
       <div className="downM">
-      {test && 
+      {test && !owner &&
       <div className="cardPopUpMS">
       <div className="itemMS" onClick={ () => handleNewOwner()}>
           <RiVipCrownLine className='extendFunPOP'/>

@@ -8,7 +8,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { CurrentGroup } from '../../context/CurrentGroup';
 
 
-const Members = () => {
+const Members = ({handleSelect}) => {
 
   const {groupId} = useParams();
   const {currentUser}=useContext(AuthContext)
@@ -32,14 +32,14 @@ const Members = () => {
   if (isLoading) return <div>Loading members...</div>;
   if (isError) return <div>Error loading members.</div>;
 
-  const { members, owner } = membersData;
+  const { members} = membersData;
 
-  const isOwner = owner == currentUser.id;
+ 
   
   return (
     <div className='cardMembers'>
         {members.map((member) => (
-                <Member member={member} key={member.id} />
+                <Member member={member} handleSelect = {handleSelect} key={member.id} />
             ))}
                        
     </div>
