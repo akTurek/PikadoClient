@@ -7,22 +7,13 @@ import { CurrentGroup } from '../../context/CurrentGroup';
 
 const GroupPage = () => {
 
-  const [selectedMembers, setselectedMembers] = useState([])
-
-    const handleToggleSelect = (id) => {
-    setSelectedMembers((prev) =>
-      prev.includes(id)
-        ? prev.filter((memberId) => memberId !== id) 
-        : [...prev, id] 
-    );
-  };
-
+  
   return (
     <div className="membersGP">
         <div className="membersCompGP">
-        <Members handleSelect={handleToggleSelect}/>
+        <Members/>
         </div>
-        <div className="downBarCompGP" selectedMembers={selectedMembers}>
+        <div className="downBarCompGP">
             <DownBar/>
         </div>
         

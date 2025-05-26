@@ -4,6 +4,7 @@ import App from './App';
 import { AuthContextProvider } from "./context/AuthProvider";
 import { ThemeContextProvider } from './context/LightDark';
 import { CurrentGroupProvider } from './context/CurrentGroup';
+import { InviteListProvider } from './context/InviteList';
 
 
 
@@ -13,7 +14,9 @@ root.render(
     <AuthContextProvider>
       <ThemeContextProvider>
         <CurrentGroupProvider>
-          <App />
+          <InviteListProvider>
+            <App />
+          </InviteListProvider>
         </CurrentGroupProvider>
       </ThemeContextProvider>
     </AuthContextProvider>

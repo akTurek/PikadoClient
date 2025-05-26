@@ -6,14 +6,15 @@ import { IoIosLogOut } from "react-icons/io";
 import { makeRequest } from '../../helpers/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CurrentGroup } from '../../context/CurrentGroup';
+import { InviteList } from '../../context/InviteList';
 
-const DownBar = ({selectedMembers}) => {
+const DownBar = () => {
 
   const queryClient = useQueryClient();
 
-  const {groupId} = useParams();
-
   const {currentGroup} = useContext(CurrentGroup)
+
+  const {sendInvites} = useContext(InviteList)
 
   const navigate = useNavigate();
 
@@ -82,15 +83,22 @@ const DownBar = ({selectedMembers}) => {
   //////
   //Handle invite
   /////
-  const handleInvite = ()=>{
-    console.log(selectedMembers)
+
+  const handleInvites = async ()=>{
+    console.log("invites send")
+    try {
+      const res = sendInvites();
+    } catch (error) {
+      
+    }
   }
+
 
 
   return (
     <div className="cardDownBar">
-        <div className="itemDB" onClick={handleInvite}>
-            <RiGamepadLine className='icon'/>
+        <div className="itemDB" onClick={()=>handleInvites()}>
+            <RiGamepadLine className='icon' />
             <span>Invite For Game</span>
         </div>
         <div className="itemDB">

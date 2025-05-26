@@ -10,8 +10,9 @@ import { IoPersonRemoveSharp } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { CurrentGroup } from "../../context/CurrentGroup";
 import { IoTrophyOutline } from "react-icons/io5";
+import { InviteList } from '../../context/InviteList';
 
-const Member = ({member, handleSelect}) => {
+const Member = ({member}) => {
 
   const {groupId} = useParams();
   const {currentGroup} = useContext(CurrentGroup)
@@ -92,17 +93,19 @@ const Member = ({member, handleSelect}) => {
 
   const owner = currentGroup.userGroupId == member.id;
 
-  const {currentUser}= useContext(AuthContext)
+  const {handleToggleSelect} = useContext(InviteList)
 
-  const handleClick=()=>{
-
+  const handleInviteList =() =>{
+    handleToggleSelect(member.userId);
   }
 
   return (
-    <div className="cardMember" onClick={handleClick}>
+    <div className="cardMember">
       <div className="upM">
         <div className="leftM">
-          <input type="checkbox" />
+         {
+          !owner &&  <input type="checkbox" onClick={handleInviteList}/>
+         }
           <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
           <h1>{member.username}</h1>
           <div className="wins">
@@ -110,7 +113,7 @@ const Member = ({member, handleSelect}) => {
             <span>{member.num1st}</span>
           </div>
         </div>
-        {currentGroup.role == "admin" && <div className="rightM" onClick={(e)=>{setTest(!test)}}>
+        {currentGroup.role == "admin"  && !owner && <div className="rightM" onClick={(e)=>{setTest(!test)}}>
           {test ? <FaArrowUp className='extendFun' /> : <FaArrowDown className='extendFun' />}
         </div>}
       </div>

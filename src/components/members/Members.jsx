@@ -8,23 +8,25 @@ import { AuthContext } from '../../context/AuthProvider';
 import { CurrentGroup } from '../../context/CurrentGroup';
 
 
-const Members = ({handleSelect}) => {
+const Members = () => {
 
   const {groupId} = useParams();
   const {currentUser}=useContext(AuthContext)
   const {currentGroup} = useContext(CurrentGroup)
 
+  //////
+  //Get list of group members
+  //////
   const getMembers = async ()=>{
     try {
       const res = await makeRequest.get(`/members/getmembers/${groupId}`)
-      console.log(res.data)
       return res.data;
     } catch (error) {
       throw error;
     }
   }
 
-  const {data : membersData, isLoading, isError} = useQuery({
+  const {data , isLoading, isError} = useQuery({
     queryKey:['members', groupId],
     queryFn: () => getMembers(),
   })
@@ -32,14 +34,11 @@ const Members = ({handleSelect}) => {
   if (isLoading) return <div>Loading members...</div>;
   if (isError) return <div>Error loading members.</div>;
 
-  const { members} = membersData;
 
- 
-  
   return (
     <div className='cardMembers'>
-        {members.map((member) => (
-                <Member member={member} handleSelect = {handleSelect} key={member.id} />
+        {data.map((member) => (
+                <Member member={member} key={member.id} />
             ))}
                        
     </div>
