@@ -1,0 +1,40 @@
+@import "../../style.scss";
+
+.inviteCard {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid themed(bgSoft);
+    background-color: themed(border);
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+
+    span {
+      font-size: 14px;
+      color: themed(textColor);
+    }
+
+    .rightICard {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+
+      button {
+        border: none;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease-in-out;
+      }
+
+      
+    }
+  }
+}

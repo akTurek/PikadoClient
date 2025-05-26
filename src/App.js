@@ -72,7 +72,7 @@ function App() {
         <GameLayout/>
       ),
       children:[
-        {path:"", element:<GameLoby/>}
+        {path:":gameId", element:<GameLoby/>}
       ]
     },
     { path: "/login", element: <Login /> },

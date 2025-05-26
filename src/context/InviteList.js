@@ -19,6 +19,10 @@ export const InviteListProvider = ({ children }) => {
     console.log(inviteList)
   };
 
+  //////
+  //Create Game + Send invites
+  //////
+
   const sendInvites = async()=>{
     try {
 
