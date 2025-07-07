@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const GameContext = createContext();
 
-export const GameContextProvider = ({ children }) => {
+export const GameContextProvider = ({ children }) => { //hrani game id in ali je owner, kdo je na vrsti pa na backend v seshnu
 
     
     const [gameContext, setGameContext] = useState(

@@ -10,6 +10,8 @@ import { LuLogOut } from "react-icons/lu";
 import { FaRegSun } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider';
+import { FaPeopleGroup } from "react-icons/fa6";
+import { IoMdPersonAdd } from "react-icons/io";
 
 
 const Navbar = () => {
@@ -29,12 +31,20 @@ const handleLogOut = async (e)=>{
   return (
     <div className="navbar">
       <div className="card">
-      <div className="item" onClick={(e)=>navigate("/")} > 
+        <div className="item" onClick={(e)=>navigate("/")} > 
           <SiDart className='icon'/>
           <span>Home</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/findgroup")}>
+        <div className="item" onClick={(e)=>navigate("/")} > 
           <HiMiniUserGroup className='icon'/>
+          <span>Friends</span>
+        </div>
+        <div className="item" onClick={(e)=>navigate("/addfriend")}>
+          <IoMdPersonAdd className='icon'/>
+          <span>Add Friends</span>
+        </div>
+        <div className="item" onClick={(e)=>navigate("/findgroup")}>
+          <FaPeopleGroup className='icon'/>
           <span>Join Group</span>
         </div>
         <div className="item" onClick={(e)=>navigate("/newgroup")}>

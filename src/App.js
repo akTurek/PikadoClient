@@ -20,6 +20,7 @@ import GroupPage from "./pages/groupPage/GroupPage";
 import { CurrentGroup } from "./context/CurrentGroup";
 import GameLoby from "./pages/gameLoby/GameLoby";
 import GameLayout from "./layouts/gameLayout/GameLayout";
+import FindFriend from "./pages/findFriends/FindFriend"
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -56,6 +57,7 @@ function App() {
         { path: "/", element: <Groups /> },
         { path: "/newgroup", element: <CreateGroup /> },
         { path: "/findgroup", element: <FindGroup /> },
+        { path: "/addfriend", element: <FindFriend /> },
         {
           path: "/group/:groupId",
           element: (

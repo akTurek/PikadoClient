@@ -1,0 +1,100 @@
+@import "../../style.scss";
+
+.cardFindF{
+    @include themify($themes) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+
+      
+        .form{
+            display: flex;
+            width: 600px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            border: 2px solid themed(border);
+            border-radius: 10px;
+            gap: 20px;
+            background-color: themed(bgSoft);
+            margin: 40px;
+            padding: 30px;
+            position: sticky;
+            
+
+            .itemFF{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0;
+            
+                
+                span{
+                    color: themed(textColor);
+                    font-weight: bolder;
+                    font-size: 40px;
+                    text-align: right;
+                    padding-right: 10px;
+                }
+
+                .sercheBar{
+                    display: flex;
+                    padding: 0px;
+                    align-items: center;
+                    justify-content: center;
+                    border: 2px solid themed(border);
+                    height: 44px;
+                    width: fit-content;
+                    overflow: hidden;
+
+                    input{
+                        width: 200px;
+                        height: 44px;
+                        background-color: themed(bg);
+                        color: themed(textColor);
+                        border: none;
+                        font-size: large;
+                        transition: all 0.3s ease; 
+                        outline: none;
+                        padding: 0px 10px;
+    
+                        &:focus, &.focused{
+                        
+                        }
+    
+                        &:hover {
+                            cursor: pointer;
+                          }
+    
+    
+                    }
+                    button {
+                        width: 40px;
+                        height: 44px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: themed(bg);
+                        color: themed(textColor);
+                        border: none;
+                        font-size: 24px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        border-left: 2px solid themed(border);
+                    
+                        &:hover {
+                          background-color: themed(bgSoft);
+                        }
+                    }
+
+               
+                }
+
+            
+            }
+        }   
+    }
+}
