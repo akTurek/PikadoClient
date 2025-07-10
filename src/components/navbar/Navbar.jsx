@@ -35,7 +35,7 @@ const handleLogOut = async (e)=>{
           <SiDart className='icon'/>
           <span>Home</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/")} > 
+        <div className="item" onClick={(e)=>navigate("/friends")} > 
           <HiMiniUserGroup className='icon'/>
           <span>Friends</span>
         </div>

@@ -1,0 +1,110 @@
+@import "../../style.scss";
+
+.cardMember {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    background-color: themed(bgSoft);
+    border-radius: 10px;
+    width: 400px;
+    height: fit-content;
+    overflow: hidden;
+    border: 2px solid themed(border);
+    box-shadow: 6px 10px 18px 0px themed(border);
+
+    .upM{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .leftM{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-left: 10px;
+    
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+    
+            input{
+                width: 30px;
+                height: 30px;
+                border-radius: 10px;
+            }
+
+            .wins{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                
+
+               .icon{
+                font-size: 20px;
+                color: themed(textColor);
+            }
+
+                span{
+                    font-size: 20px;
+                    align-items: center;
+                    color: themed(textColor);
+                }
+            }
+        }
+    
+        .rightM{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            width: 40px;
+            
+    
+            .extendFun{
+                font-size: 20px;
+                color: themed(textColor);
+            }
+    
+            &:hover{
+                cursor: pointer;
+                background-color: themed(textColorSoft);
+            }
+        }
+    }
+
+    .downM{
+        .cardPopUpMS {
+              display: flex;
+              justify-content: space-around;
+              align-items: center; 
+              padding: 10px 20px;
+              background-color: themed(bgSoft);
+              border-top: 2px solid themed(border);
+          
+          
+              .itemMS{
+                  padding: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  .extendFunPOP{
+                      font-size: 20px;
+                      color: themed(textColor);
+                      
+                  }
+          
+                  &:hover{
+                      cursor: pointer;
+                      background-color: themed(bg);
+                  }
+                }
+            }
+          }
+    }
+  
+}
