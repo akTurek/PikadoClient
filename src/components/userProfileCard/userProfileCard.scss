@@ -1,0 +1,103 @@
+@import "../../style.scss";
+
+.userProfileCard {
+  @include themify($themes) {
+    border: 1px solid;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid;
+      padding-top: 40px;
+      width: 100%;
+
+      img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        h1 {
+        }
+
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .bottom {
+      padding: 40px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+
+      span {
+        font-weight: normal;
+        font-size: 30px;
+        padding-bottom: 10px;
+      }
+      h1 {
+        font-weight: bold;
+        font-size: 20px;
+        padding-bottom: 2px;
+        color: red;
+      }
+
+      input {
+        width: 200px;
+        height: 44px;
+        background-color: themed(bg);
+        color: themed(textColor);
+        border: none;
+        font-size: large;
+        transition: all 0.3s ease;
+        outline: none;
+        padding: 0px 10px;
+
+        &:focus,
+        &.focused {
+          border-bottom: 1px solid themed(border);
+        }
+
+        &:hover {
+          cursor: pointer;
+          border-bottom: 1px solid themed(border);
+        }
+      }
+      button {
+        width: 100px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(252, 0, 0);
+        color: themed(textColor);
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: rgb(0, 206, 0);
+        }
+      }
+    }
+  }
+}

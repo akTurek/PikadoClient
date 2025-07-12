@@ -7,24 +7,26 @@
     background-color: themed(bg);
     color: themed(textColorSoft);
     position: absolute;
+    height: 100vh;
 
-    .topLM{
+    .topLM {
       position: sticky;
       top: 0;
       z-index: 999;
     }
 
-    .botomMl{
+    .botomMl {
       display: flex;
       margin: 20px;
-    
 
-      .outlet{
-        flex: 6;
+      .rbMl {
+        position: sticky;
+        top: 120px;
       }
 
-     
-     
+      .outlet {
+        flex: 6;
+      }
     }
   }
 }

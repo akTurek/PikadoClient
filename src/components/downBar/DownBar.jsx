@@ -12,9 +12,9 @@ const DownBar = () => {
 
   const queryClient = useQueryClient();
 
-  const {currentGroup} = useContext(CurrentGroup)
+  const { currentGroup } = useContext(CurrentGroup)
 
-  const {sendInvites} = useContext(InviteList)
+  const { sendInvites } = useContext(InviteList)
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const DownBar = () => {
   const leaveGroup = async () => {
 
     try {
-    
+
       const res = await makeRequest.delete(`/members/leave/${currentGroup.id}`)
       console.log(res.data)
 
@@ -36,15 +36,15 @@ const DownBar = () => {
   const mutationLeave = useMutation({
     mutationFn: leaveGroup,
 
-    onSuccess:()=> {
-      queryClient.invalidateQueries({queryKey:['members', currentGroup.id]})
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['members', currentGroup.id] })
     },
-    onError:(error)=>{
+    onError: (error) => {
       console.log(error)
     }
   })
 
-  const handleLeave = () =>{
+  const handleLeave = () => {
     mutationLeave.mutate();
   }
 
@@ -54,7 +54,7 @@ const DownBar = () => {
   const deleteGroup = async () => {
 
     try {
-    
+
       const res = await makeRequest.delete(`/group/delete/${currentGroup.id}`)
       console.log(res.data)
 
@@ -66,17 +66,17 @@ const DownBar = () => {
   const mutationDelete = useMutation({
     mutationFn: deleteGroup,
 
-    onSuccess:()=> {
-      queryClient.invalidateQueries({queryKey:['members', currentGroup.id]})
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['members', currentGroup.id] })
       navigate("/")
 
     },
-    onError:(error)=>{
+    onError: (error) => {
       console.log(error)
     }
   })
 
-  const handleDelete = () =>{
+  const handleDelete = () => {
     mutationDelete.mutate();
   }
 
@@ -84,12 +84,12 @@ const DownBar = () => {
   //Handle invite
   /////
 
-  const handleInvites = async ()=>{
+  const handleInvites = async () => {
     console.log("invites send")
     try {
       const res = sendInvites();
     } catch (error) {
-      
+
     }
   }
 
@@ -97,26 +97,26 @@ const DownBar = () => {
 
   return (
     <div className="cardDownBar">
-        <div className="itemDB" onClick={()=>handleInvites()}>
-            <RiGamepadLine className='icon' />
-            <span>Invite For Game</span>
-        </div>
-        <div className="itemDB">
-            <RiGamepadLine className='icon'/>
-            <span>Group ID: {currentGroup.id}</span>
-        </div>
-        {currentGroup.role === 'admin' ? (
-            <div className="itemDB" onClick={() => handleDelete()}>
-              <IoIosLogOut className='icon'/>
-              <span>Delete</span>
-            </div>
-            ) : (
-            <div className="itemDB" onClick={() => handleLeave()}>
-              <IoIosLogOut className='icon'/>
-              <span>Leave</span>
-            </div>
-          )}
+      <div className="itemDB" onClick={() => handleInvites()}>
+        <RiGamepadLine className='icon' />
+        <span>Invite For Game</span>
       </div>
+      <div className="itemDB">
+        <RiGamepadLine className='icon' />
+        <span>Group ID: {currentGroup.id}</span>
+      </div>
+      {currentGroup.role === 'admin' ? (
+        <div className="itemDB" onClick={() => handleDelete()}>
+          <IoIosLogOut className='icon' />
+          <span>Delete</span>
+        </div>
+      ) : (
+        <div className="itemDB" onClick={() => handleLeave()}>
+          <IoIosLogOut className='icon' />
+          <span>Leave</span>
+        </div>
+      )}
+    </div>
   )
 }
 

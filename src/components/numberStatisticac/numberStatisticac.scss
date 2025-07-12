@@ -1,0 +1,33 @@
+@import "../../style.scss";
+
+.numStatCard {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid themed(border);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 75px;
+    width: 600px;
+
+    .numStatItem {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .numStatTop {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .numStatBot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

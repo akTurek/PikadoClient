@@ -20,8 +20,9 @@ import GroupPage from "./pages/groupPage/GroupPage";
 import { CurrentGroup } from "./context/CurrentGroup";
 import GameLoby from "./pages/gameLoby/GameLoby";
 import GameLayout from "./layouts/gameLayout/GameLayout";
-import FindFriend from "./pages/findFriends/FindFriend"
+import FindFriend from "./pages/findFriends/FindFriend";
 import FriendePage from "./pages/friendPage/FriendePage";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -59,7 +60,8 @@ function App() {
         { path: "/newgroup", element: <CreateGroup /> },
         { path: "/findgroup", element: <FindGroup /> },
         { path: "/addfriend", element: <FindFriend /> },
-        { path: "/friends", element: <FriendePage/>},
+        { path: "/friends", element: <FriendePage /> },
+        { path: "/profile", element: <Profile /> },
         {
           path: "/group/:groupId",
           element: (
@@ -72,12 +74,8 @@ function App() {
     },
     {
       path: "/play",
-      element:(
-        <GameLayout/>
-      ),
-      children:[
-        {path:":gameId", element:<GameLoby/>}
-      ]
+      element: <GameLayout />,
+      children: [{ path: ":gameId", element: <GameLoby /> }],
     },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },

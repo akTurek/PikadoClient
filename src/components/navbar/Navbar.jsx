@@ -16,53 +16,53 @@ import { IoMdPersonAdd } from "react-icons/io";
 
 const Navbar = () => {
 
-const {theme , changeTheme } = useContext(ThemeContext)
+  const { theme, changeTheme } = useContext(ThemeContext)
 
-const {logOut, currentUser} = useContext(AuthContext);
+  const { logOut, currentUser } = useContext(AuthContext);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
-const handleLogOut = async (e)=>{
-  await logOut();
-  navigate("/login")
-}
+  const handleLogOut = async (e) => {
+    await logOut();
+    navigate("/login")
+  }
 
   return (
     <div className="navbar">
       <div className="card">
-        <div className="item" onClick={(e)=>navigate("/")} > 
-          <SiDart className='icon'/>
+        <div className="item" onClick={(e) => navigate("/")} >
+          <SiDart className='icon' />
           <span>Home</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/friends")} > 
-          <HiMiniUserGroup className='icon'/>
+        <div className="item" onClick={(e) => navigate("/friends")} >
+          <HiMiniUserGroup className='icon' />
           <span>Friends</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/addfriend")}>
-          <IoMdPersonAdd className='icon'/>
+        <div className="item" onClick={(e) => navigate("/addfriend")}>
+          <IoMdPersonAdd className='icon' />
           <span>Add Friends</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/findgroup")}>
-          <FaPeopleGroup className='icon'/>
+        <div className="item" onClick={(e) => navigate("/findgroup")}>
+          <FaPeopleGroup className='icon' />
           <span>Join Group</span>
         </div>
-        <div className="item" onClick={(e)=>navigate("/newgroup")}>
-          <MdOutlineGroupAdd className='icon'/>
+        <div className="item" onClick={(e) => navigate("/newgroup")}>
+          <MdOutlineGroupAdd className='icon' />
           <span>Creat Group</span>
         </div>
       </div>
       <div className="card">
         <div className="item">
-        {theme ? <FaRegMoon className='icon' onClick={changeTheme}/> : <FaRegSun className='icon' onClick={changeTheme}/>}
+          {theme ? <FaRegMoon className='icon' onClick={changeTheme} /> : <FaRegSun className='icon' onClick={changeTheme} />}
         </div>
-          
-        <div className="item">
-          <FaUserLarge className='icon'/>
+
+        <div className="item" onClick={(e) => navigate("/profile")}>
+          <FaUserLarge className='icon' />
           <span>{currentUser?.username || "Guest"}</span>
         </div>
         <div className="item" onClick={handleLogOut}>
-          <LuLogOut className='icon'/>
+          <LuLogOut className='icon' />
           <span>Log out</span>
         </div>
       </div>

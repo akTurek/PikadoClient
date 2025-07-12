@@ -15,48 +15,43 @@ const Friend = ({ friend }) => {
 
 
 
-  //   const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-  // //////
-  // //Kick player logic
-  // //////
+  //////
+  //Kick player logic
+  //////
 
-  //    const kickPlayer = async () =>{
-  //     try {
-  //         const res = await makeRequest.delete("/members/kick", {data : {
-  //         memberId: member.id,
-  //         groupId
-  //       }})
-  //       console.log(res.data)
-  //       return res.data;
-  //     } catch (error) {
-  //       throw error
-  //     }
-  //   }
+  const kickPlayer = async () => {
+    try {
 
-  //   const muatationKickPlayer = useMutation({
-  //     mutationFn:kickPlayer,
+      console.log("Unfriendam id " + friend.id)
+      const res = await makeRequest.delete(`/friends/unfriend/${friend.id}`)
+      console.log(res.data)
+      return res.data;
+    } catch (error) {
+      throw error
+    }
+  }
 
-  //     onSuccess:()=> {
-  //       queryClient.invalidateQueries({queryKey:['members', groupId]})
-  //     },
-  //     onError:(error)=>{
-  //       console.log(error)
-  //     }
-  //   })
+  const muatationUnfriend = useMutation({
+    mutationFn: kickPlayer,
 
-  //   const handleKickPlayer = () => {
-  //     //setTest(false)
-  //     muatationKickPlayer.mutate()
-  //   }
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['friends'] })
+    },
+    onError: (error) => {
+      console.log(error)
+    }
+  })
+
+  const handleUnfriend = () => {
+    //setTest(false)
+    muatationUnfriend.mutate()
+  }
 
 
 
   const [test, setTest] = useState(false)
-
-  //   const owner = currentGroup.userGroupId == member.id;
-
-  //   const {handleToggleSelect} = useContext(InviteList)
 
   //   const handleInviteList =() =>{
   //     handleToggleSelect(member.userId);
@@ -84,13 +79,13 @@ const Friend = ({ friend }) => {
       <div className="downM">
         {test &&
           <div className="cardPopUpMS">
-            <div className="itemMS">
+            <div className="itemMS" onClick={() => handleUnfriend()}>
               <RiVipCrownLine className='extendFunPOP' />
-              <span>Make Owner</span>
+              <span>Unfriend</span>
             </div>
             <div className="itemMS">
               <IoPersonRemoveSharp className='extendFunPOP' />
-              <span>Remove</span>
+              <span>Block</span>
             </div>
           </div>
         }

@@ -1,8 +1,7 @@
 @import "../../style.scss";
 
-.navbar{
-    @include themify($themes) {
- 
+.navbar {
+  @include themify($themes) {
     display: flex;
     background-color: themed(bgSoft);
     width: 100%;
@@ -11,37 +10,32 @@
     align-items: center;
     border-bottom: 2px solid themed(border);
     width: 100vw;
-    
 
+    .card {
+      display: flex;
+      margin: 5px 20px;
+      gap: 30px;
 
-    .card{
+      .item {
         display: flex;
-        margin: 5px 20px;
-        gap: 30px;
-        
-        .item{
-            display: flex;
-            gap: 3px;
-            align-items: center;
-            
-            .icon{
-                font-size: 40px;
-                color: themed(textColor);
-            }
+        gap: 3px;
+        align-items: center;
 
-            span{
-                font-size: 30px;
-                align-items: center;
-                color: themed(textColor);
-            }
-
-            &:hover{
-                cursor: pointer;
-            }
-            
+        .icon {
+          font-size: 40px;
+          color: themed(textColor);
         }
-      
-    }
 
+        span {
+          font-size: 30px;
+          align-items: center;
+          color: themed(textColor);
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+  }
 }

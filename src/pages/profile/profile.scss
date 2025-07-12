@@ -1,0 +1,40 @@
+@import "../../style.scss";
+
+.profilePagaCard {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .profilePagaLeft {
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profilePagaRight {
+      height: 100%;
+      flex: 3;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+
+      .profilePageRightUp {
+        flex: 6;
+        margin-top: 200px;
+        height: 600px;
+        width: 800px;
+      }
+
+      .profilePageRightDown {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
