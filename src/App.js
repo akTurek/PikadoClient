@@ -18,6 +18,7 @@ import FindGroup from "./pages/findGroup/FindGroup";
 import Groups from "./components/groups/Groups";
 import GroupPage from "./pages/groupPage/GroupPage";
 import { CurrentGroup } from "./context/CurrentGroup";
+import { GameContext } from "./context/GameContext";
 import GameLoby from "./pages/gameLoby/GameLoby";
 import GameLayout from "./layouts/gameLayout/GameLayout";
 import FindFriend from "./pages/findFriends/FindFriend";
@@ -28,6 +29,7 @@ function App() {
   const { currentUser } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
   const { currentGroup, leveGroupPage } = useContext(CurrentGroup);
+  const { gameContext } = useContext(GameContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -41,6 +43,17 @@ function App() {
     const { currentGroup } = useContext(CurrentGroup);
 
     if (!currentGroup || currentGroup.id != groupId) {
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  }
+
+  function ProtectedGameRoute({ children }) {
+    const { gameId } = useParams();
+    const { gameContext } = useContext(GameContext);
+
+    if (!gameContext || gameContext.gameId != gameId) {
       return <Navigate to="/" replace />;
     }
 
@@ -74,7 +87,11 @@ function App() {
     },
     {
       path: "/play",
-      element: <GameLayout />,
+      element: (
+        <ProtectedGameRoute>
+          <GameLayout />
+        </ProtectedGameRoute>
+      ),
       children: [{ path: ":gameId", element: <GameLoby /> }],
     },
     { path: "/login", element: <Login /> },

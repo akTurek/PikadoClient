@@ -6,27 +6,27 @@ import { useQuery } from '@tanstack/react-query';
 
 const Groups = () => {
 
-    
-    const { data, isLoading, isError, error } = useQuery({
-        queryKey: ['myGroups'],
-        queryFn: () => makeRequest.get('/group/mygroups').then(res => res.data),
-      });
+  console.log("requat for groups")
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['myGroups'],
+    queryFn: () => makeRequest.get('/group/mygroups').then(res => res.data),
+  });
 
-      if (isLoading) {
-        return <span>Loading...</span>
-      }
-    
-      if (isError) {
-        return <span>Error: {error?.response?.data || error.message}</span>;        
-      }
-      
-    return (
-        <div className="groupsCard">
-            {data.map((group) => (
-                <Group group={group} key={group.id} />
-            ))}
-        </div>
-    );
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (isError) {
+    return <span>Error: {error?.response?.data || error.message}</span>;
+  }
+
+  return (
+    <div className="groupsCard">
+      {data.map((group) => (
+        <Group group={group} key={group.id} />
+      ))}
+    </div>
+  );
 };
 
 export default Groups;

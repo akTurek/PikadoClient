@@ -5,35 +5,35 @@ import { CiLogout } from "react-icons/ci";
 
 
 const GameNavBar = () => {
-    const gameStatus="Waiting for start"
-    const gameStatus2="loby"
-    const gameRoll = "admi4n" 
+    const gameStatus = "Waiting for start"
+    const gameStatus2 = "loby"
+    const gameRoll = "admin"
 
-  return (
-    <div className="gameNavBar">
-        <span>{gameStatus}</span>
-        {gameRoll === "admin" ? (
-            <div className="adminCenter">
-                <div className="itemAGNB">
-                    <MdOutlineCancel className='icon'/>
-                    <span>Start Game</span>
+    return (
+        <div className="gameNavBar">
+            <span>{gameStatus}</span>
+            {gameRoll === "admin" ? (
+                <div className="adminCenter">
+                    <div className="itemAGNB">
+                        <MdOutlineCancel className='icon' />
+                        <span>Start Game</span>
+                    </div>
+                    <div className="itemAGNB">
+                        <MdOutlineCancel className='icon' />
+                        <span>Cancel Game</span>
+                    </div>
                 </div>
-                <div className="itemAGNB">
-                    <MdOutlineCancel className='icon'/>
-                    <span>Cancel Game</span>
+
+            ) : (
+                <div className="itemGNB">
+                    <CiLogout className='icon' />
+                    <span>Leave Game</span>
                 </div>
-            </div>
-            
-        ):(
-            <div className="itemGNB">
-                <CiLogout className='icon' />
-                <span>Leave Game</span>
-            </div>
-            
-        )}
-        
-    </div>
-  )
+
+            )}
+
+        </div>
+    )
 }
 
 export default GameNavBar

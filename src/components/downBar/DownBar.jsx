@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./downBar.scss"
 import { RiGamepadLine } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { makeRequest } from '../../helpers/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CurrentGroup } from '../../context/CurrentGroup';
 import { InviteList } from '../../context/InviteList';
+import { GameContext } from '../../context/GameContext';
+
 
 const DownBar = () => {
 
@@ -17,6 +19,10 @@ const DownBar = () => {
   const { sendInvites } = useContext(InviteList)
 
   const navigate = useNavigate();
+
+  const { gameContext, setGameContext } = useContext(GameContext)
+
+
 
   //////
   //LEAVE group fun
@@ -87,11 +93,17 @@ const DownBar = () => {
   const handleInvites = async () => {
     console.log("invites send")
     try {
-      const res = sendInvites();
+      const gameInfo = await sendInvites();
+      console.log("dobil         " + gameInfo)
+      await setGameContext(gameInfo)
+
+      navigate(`/play/${gameInfo.gameId}`)
     } catch (error) {
 
     }
+
   }
+
 
 
 

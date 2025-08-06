@@ -3,43 +3,81 @@ import "./inviteF.scss"
 
 import { makeRequest } from '../../helpers/axios';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const InviteF = ({invite}) => {
+const InviteF = ({ invite }) => {
 
     const navigate = useNavigate()
+    const queryClient = useQueryClient();
 
-    const handleAcc = async()=>{
+    //////
+    //Accept frend request
+    //////
+    const handleAcc = async () => {
 
         try {
             const res = await makeRequest.put(`/friends/acc/${invite.id}`)
             navigate(`/`)
         } catch (error) {
-            
+
         }
 
     }
 
-    const handleDec = async()=>{
+    const muatationHandleAcc = useMutation({
+        mutationFn: handleAcc,
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['invitesF'] })
+        },
+        onError: (error) => {
+            console.log(error)
+        }
+    })
+
+    const handleAccClick = () => {
+        muatationHandleAcc.mutate();
+    }
+
+    //////
+    //Decline frend request
+    //////
+    const handleDec = async () => {
 
         try {
             const res = await makeRequest.put(`/friends/dec/${invite.id}`)
             navigate(`/`)
         } catch (error) {
-            
+
         }
 
     }
 
-  console.log(invite.game_id)
-  return (
-    <div className="inviteCardF">
-        <span>Friend request {invite.username}</span>
-        <div className="rightICardF">
-            <button onClick={()=>handleAcc()}>Accept</button>
-            <button onClick={()=>handleDec()}>Decline</button>
+    const muatationHandleDec = useMutation({
+        mutationFn: handleDec,
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['invitesF'] })
+        },
+        onError: (error) => {
+            console.log(error)
+        }
+    })
+
+    const handleDecClick = () => {
+        muatationHandleAcc.mutate();
+    }
+
+    console.log(invite.game_id)
+    return (
+        <div className="inviteCardF">
+            <span>Friend request {invite.username}</span>
+            <div className="rightICardF">
+                <button onClick={() => handleAccClick()}>Accept</button>
+                <button onClick={() => handleDecClick()}>Decline</button>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default InviteF
