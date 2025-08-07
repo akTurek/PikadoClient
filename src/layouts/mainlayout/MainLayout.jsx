@@ -4,7 +4,7 @@ import Navbar from '../../components/navbar/Navbar'
 import RightBar from '../../components/rightBar/RightBar'
 import { ThemeContext } from '../../context/LightDark'
 import "./mainLayout.scss"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+//import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CurrentGroup } from '../../context/CurrentGroup'
 import { GameContext } from '../../context/GameContext'
 
@@ -15,7 +15,7 @@ const MainLayout = () => {
 
   const { leveGroupPage } = useContext(CurrentGroup)
 
-  const queryClient = new QueryClient();
+  //const queryClient = new QueryClient();
 
   useEffect(() => {
     if (!location.pathname.startsWith("/group/")) {
@@ -27,23 +27,23 @@ const MainLayout = () => {
   }, [location.pathname, gameContext]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div  >
-        <div className="main">
-          <div className="topLM">
-            <Navbar />
+    //<QueryClientProvider client={queryClient}>
+    <div  >
+      <div className="main">
+        <div className="topLM">
+          <Navbar />
+        </div>
+        <div className="botomMl">
+          <div className="outlet">
+            <Outlet />
           </div>
-          <div className="botomMl">
-            <div className="outlet">
-              <Outlet />
-            </div>
-            <div className="rbMl">
-              <RightBar />
-            </div>
+          <div className="rbMl">
+            <RightBar />
           </div>
         </div>
       </div>
-    </QueryClientProvider>
+    </div>
+    //</QueryClientProvider>
   )
 }
 

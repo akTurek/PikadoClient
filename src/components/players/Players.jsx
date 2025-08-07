@@ -7,7 +7,7 @@ import { GameContext } from '../../context/GameContext.js'
 const Players = ({ }) => {
 
 
-
+    const players = []
 
 
     return (
