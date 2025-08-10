@@ -65,7 +65,7 @@ const InviteF = ({ invite }) => {
     })
 
     const handleDecClick = () => {
-        muatationHandleAcc.mutate();
+        muatationHandleDec.mutate();
     }
 
     console.log(invite.game_id)

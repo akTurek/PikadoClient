@@ -7,16 +7,16 @@ import { makeRequest } from '../../helpers/axios';
 
 const FindGroup = () => {
 
-  const[foundGroup, setFoundGroup] = useState(null);
+  const [foundGroup, setFoundGroup] = useState(null);
 
-  const[searchGroup, setSearchGroup] = useState({
-    GroupId:""
+  const [searchGroup, setSearchGroup] = useState({
+    groupName: ""
   });
 
-  const handleChange = (e)=>{
-    setSearchGroup(prev=>({...prev,[e.target.name]:e.target.value}))
+  const handleChange = (e) => {
+    setSearchGroup(prev => ({ ...prev, [e.target.name]: e.target.value }))
     console.log(searchGroup)
-    
+
   }
 
 
@@ -26,10 +26,10 @@ const FindGroup = () => {
     try {
 
       const res = await makeRequest.get("/group/findgroup", {
-        params: { groupId: searchGroup.GroupId },
+        params: { groupName: searchGroup.groupName },
         withCredentials: true
       });
-      
+
       console.log(res.data)
       setFoundGroup(res.data)
     } catch (error) {
@@ -40,21 +40,21 @@ const FindGroup = () => {
 
   return (
     <div className="findG">
-        <div className="form">
-            <div className="itemFG">
-                <span>Group ID</span>
-                <div className="sercheBar">
-                <input name="GroupId" type="text" onChange={handleChange} />
-                <button onClick={handleClick} ><FaMagnifyingGlass/></button>
-                </div>
-            </div>
-            <div className="results">
-                
-            </div>
+      <div className="form">
+        <div className="itemFG">
+          <span>Group Name</span>
+          <div className="sercheBar">
+            <input name="groupName" type="text" onChange={handleChange} />
+            <button onClick={handleClick} ><FaMagnifyingGlass /></button>
+          </div>
         </div>
-        {foundGroup && <JoinGroup foundGroup={foundGroup}/>}
-        
-        
+        <div className="results">
+
+        </div>
+      </div>
+      {foundGroup && <JoinGroup foundGroup={foundGroup} />}
+
+
     </div>
   )
 }

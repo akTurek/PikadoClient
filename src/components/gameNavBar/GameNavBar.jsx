@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const GameNavBar = () => {
 
-    const { gameContext } = useContext(GameContext)
+    const { gameContext, setGameContext } = useContext(GameContext)
     const { currentUser } = useContext(AuthContext)
     const queryClient = useQueryClient();
 
@@ -18,7 +18,7 @@ const GameNavBar = () => {
 
         try {
 
-            const res = await makeRequest.put(`/game/start/${gameContext.gameId}`, { status })
+            const res = await makeRequest.put(`/game/changeStatus/${gameContext.gameId}`, { status })
             console.log(res.data)
 
         } catch (error) {
@@ -43,19 +43,36 @@ const GameNavBar = () => {
     }
 
 
+    const leaveGame = async (status) => {
+
+        try {
+
+            const res = await makeRequest.delite(`/game/leave/${gameContext.gameId}`)
+            setGameContext(null)
+
+        } catch (error) {
+            throw error
+        }
+    }
 
 
 
     return (
         <div className="gameNavBar">
             <span>{gameContext.gameStatus}</span>
-            {gameContext.ownerId === currentUser.id ? (
+            {gameContext.isAdmin ? (
                 <div className="adminCenter">
-                    <div className="itemAGNB" onClick={() => handleChangeStatus("active")}>
-                        <MdOutlineCancel className='icon' />
-                        <span>Start Game</span>
-                    </div>
-                    <div className="itemAGNB" onClick={() => handleChangeStatus("canceled")}>
+                    {gameContext.gameStatus === 'waiting' && (
+                        <div className="itemAGNB" onClick={() => handleChangeStatus('active')}>
+                            <span>Start Game</span>
+                        </div>
+                    )}
+                    {gameContext.gameStatus === 'active' && (
+                        <div className="itemAGNB" onClick={() => handleChangeStatus('finished')}>
+                            <span>Finish Game</span>
+                        </div>
+                    )}
+                    <div className="itemAGNB" onClick={() => handleChangeStatus("cancelled")}>
                         <MdOutlineCancel className='icon' />
                         <span>Cancel Game</span>
                     </div>

@@ -18,9 +18,9 @@ export const GameContextProvider = ({ children }) => {
 
   const getGameData = async (inviteId) => {
     try {
-      const res = await makeRequest.put(`/invites/acc/$inviteId}`);
+      const res = await makeRequest.put(`/invites/acc/${inviteId}`);
       setGameContext(res.data);
-      console.log(res.data);
+      console.log("Game info:", JSON.stringify(res.data, null, 2));
     } catch (error) {}
   };
 

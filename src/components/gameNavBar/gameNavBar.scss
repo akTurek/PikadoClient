@@ -10,43 +10,44 @@
     justify-content: space-between;
     gap: 15px;
     position: fixed;
-    
 
-    span{
+    span {
+      color: themed(textColor);
+      font-size: xx-large;
+    }
+
+    .adminCenter {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+
+      .itemAGNB {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+          font-size: 40px;
+          color: themed(textColor);
+        }
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .itemGNB {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        font-size: 40px;
         color: themed(textColor);
-        font-size: xx-large;
+      }
     }
-
-    .adminCenter{
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-
-        .itemAGNB{
-        display: flex;
-        align-items: center;
-        justify-content: center;        
-
-        .icon{
-            font-size: 40px;
-            color: themed(textColor);
-        }
-        }
-
+    &:hover {
+      cursor: pointer;
     }
-
-    .itemGNB{
-        display: flex;
-        align-items: center;
-        justify-content: center;        
-
-        .icon{
-            font-size: 40px;
-            color: themed(textColor);
-        }
-    }
-
-    
-
   }
 }

@@ -34,7 +34,7 @@ export const CurrentGroupProvider = ({ children }) => {
 
   return (
     <CurrentGroup.Provider
-      value={{ currentGroup, getGroupData, leveGroupPage }}
+      value={{ currentGroup, getGroupData, leveGroupPage, setCurrentGroup }}
     >
       {children}
     </CurrentGroup.Provider>

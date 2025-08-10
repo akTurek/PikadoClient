@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./player.scss"
+import { GameContext } from '../../context/GameContext';
 
-const Player = ({player}) => {
+const Player = ({ player }) => {
 
-   const playerClass = player.turn ? "turn" 
-                      : player.score == 0 
-                      ? "finished" 
-                      : "noTurn";
+  const playerClass = player.turn ? "turn"
+    : player.score == 0
+      ? "finished"
+      : "noTurn";
 
-  const owner = true
 
-  console.log(playerClass)
+  const { gameContext } = useContext(GameContext);
 
-  const [clicked, setClicked]= useState(false)
+  const [clicked, setClicked] = useState(false)
 
-  const handleClick = () =>{
+  const handleClick = () => {
     setClicked(!clicked)
   }
 
@@ -22,23 +22,24 @@ const Player = ({player}) => {
 
   return (
     <div className={playerClass} onClick={handleClick}>
-        
-        <div className="upPlayer">
-          <div className="left">
-            {playerClass  == "finished" && <span>{player.place}</span> }
-            <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
-            <span>{player.name}</span>
-          </div>
-          <div className="right">
-            <span>{player.score}</span>
-          </div>
+
+      <div className="upPlayer">
+        <div className="left">
+          <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
+
+          <span>{player.username}</span>
         </div>
-        {clicked && owner &&  (
-          <div className="downPlayer">
-              <span>Kick</span>
-          </div>
-        ) }
-        
+        <div className="right">
+          {player.score > 0 ? <span>S:{player.score}</span> : <span>P:{player.place}</span>}
+
+        </div>
+      </div>
+      {clicked && gameContext.isAdmin && (
+        <div className="downPlayer">
+          <span>Kick</span>
+        </div>
+      )}
+
     </div>
   )
 }

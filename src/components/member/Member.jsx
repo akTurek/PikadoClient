@@ -15,7 +15,7 @@ import { InviteList } from '../../context/InviteList';
 const Member = ({ member }) => {
 
   const { groupId } = useParams();
-  const { currentGroup } = useContext(CurrentGroup)
+  const { currentGroup, getGroupData } = useContext(CurrentGroup)
 
   const queryClient = useQueryClient();
 
@@ -42,7 +42,8 @@ const Member = ({ member }) => {
   const muatationNewOwner = useMutation({
     mutationFn: makeOwner,
 
-    onSuccess: () => {
+    onSuccess: async () => {
+      await getGroupData(currentGroup.id)
       queryClient.invalidateQueries({ queryKey: ['members', groupId] })
     },
     onError: (error) => {

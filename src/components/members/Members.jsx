@@ -10,14 +10,14 @@ import { CurrentGroup } from '../../context/CurrentGroup';
 
 const Members = () => {
 
-  const {groupId} = useParams();
-  const {currentUser}=useContext(AuthContext)
-  const {currentGroup} = useContext(CurrentGroup)
+  const { groupId } = useParams();
+  const { currentUser } = useContext(AuthContext)
+  const { currentGroup } = useContext(CurrentGroup)
 
   //////
   //Get list of group members
   //////
-  const getMembers = async ()=>{
+  const getMembers = async () => {
     try {
       const res = await makeRequest.get(`/members/getmembers/${groupId}`)
       return res.data;
@@ -26,8 +26,8 @@ const Members = () => {
     }
   }
 
-  const {data , isLoading, isError} = useQuery({
-    queryKey:['members', groupId],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['members', groupId],
     queryFn: () => getMembers(),
   })
 
@@ -37,10 +37,10 @@ const Members = () => {
 
   return (
     <div className='cardMembers'>
-        {data.map((member) => (
-                <Member member={member} key={member.id} />
-            ))}
-                       
+      {data.map((member) => (
+        <Member member={member} key={member.id} />
+      ))}
+
     </div>
   )
 }

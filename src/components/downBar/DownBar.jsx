@@ -14,7 +14,7 @@ const DownBar = () => {
 
   const queryClient = useQueryClient();
 
-  const { currentGroup } = useContext(CurrentGroup)
+  const { currentGroup, setCurrentGroup } = useContext(CurrentGroup)
 
   const { sendInvites } = useContext(InviteList)
 
@@ -44,6 +44,7 @@ const DownBar = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['members', currentGroup.id] })
+      setCurrentGroup(null)
     },
     onError: (error) => {
       console.log(error)
@@ -90,10 +91,10 @@ const DownBar = () => {
   //Handle invite
   /////
 
-  const handleInvites = async () => {
-    console.log("invites send")
+  const handleInvites = async (type) => {
+    console.log("invites send" + type)
     try {
-      const gameInfo = await sendInvites();
+      const gameInfo = await sendInvites(type);
       console.log("dobil         " + gameInfo)
       await setGameContext(gameInfo)
 
@@ -109,9 +110,17 @@ const DownBar = () => {
 
   return (
     <div className="cardDownBar">
-      <div className="itemDB" onClick={() => handleInvites()}>
+      <div className="itemDB" onClick={() => handleInvites(501)}>
         <RiGamepadLine className='icon' />
-        <span>Invite For Game</span>
+        <span>501</span>
+      </div>
+      <div className="itemDB" onClick={() => handleInvites(301)}>
+        <RiGamepadLine className='icon' />
+        <span>301</span>
+      </div>
+      <div className="itemDB" onClick={() => handleInvites(101)}>
+        <RiGamepadLine className='icon' />
+        <span>101</span>
       </div>
       <div className="itemDB">
         <RiGamepadLine className='icon' />

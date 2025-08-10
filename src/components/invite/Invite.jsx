@@ -9,7 +9,7 @@ const Invite = ({ invite }) => {
 
     const navigate = useNavigate()
     const queryClient = useQueryClient();
-    const [getGameData] = useContext(GameContext)
+    const { getGameData } = useContext(GameContext)
 
 
     //////

@@ -23,13 +23,17 @@ export const InviteListProvider = ({ children }) => {
   //Create Game + Send invites
   //////
 
-  const sendInvites = async () => {
+  const sendInvites = async (type) => {
     try {
-      const res = await makeRequest.post("/invites/send", {
+      const data = {
         inviteList,
-        groupId: currentGroup.id,
-        type: 501,
-      });
+        groupId: currentGroup?.id ?? null,
+        type: type,
+      };
+
+      console.log("📦 Podatki, ki jih pošiljam:", data);
+
+      const res = await makeRequest.post("/invites/send", data);
 
       console.log("GameId" + res.data);
       return res.data;
@@ -40,7 +44,9 @@ export const InviteListProvider = ({ children }) => {
   };
 
   return (
-    <InviteList.Provider value={{ handleToggleSelect, sendInvites }}>
+    <InviteList.Provider
+      value={{ handleToggleSelect, sendInvites, setInviteList }}
+    >
       {children}
     </InviteList.Provider>
   );

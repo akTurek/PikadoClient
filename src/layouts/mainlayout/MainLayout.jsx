@@ -7,6 +7,7 @@ import "./mainLayout.scss"
 //import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CurrentGroup } from '../../context/CurrentGroup'
 import { GameContext } from '../../context/GameContext'
+import { InviteList } from '../../context/InviteList'
 
 const MainLayout = () => {
 
@@ -17,10 +18,14 @@ const MainLayout = () => {
 
   //const queryClient = new QueryClient();
 
+  const { setInviteList } = useContext(InviteList)
+
   useEffect(() => {
     if (!location.pathname.startsWith("/group/")) {
       leveGroupPage();
     }
+
+    setInviteList([])
     if (gameContext !== null) {
       setGameContext(null)
     }
