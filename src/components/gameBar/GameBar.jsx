@@ -26,7 +26,7 @@ const GameBar = () => {
   };
 
 
-  const allowedScores = new Set([...Array(20).keys()].map(i => i + 1).concat([25, 50]));
+  const allowedScores = new Set([...Array(20).keys()].map(i => i + 1).concat([0, 25, 50]));
   const isValidMul = (m) => [1, 2, 3].includes(Number(m));
   const isValidScore = (s) => allowedScores.has(Number(s));
 

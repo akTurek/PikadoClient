@@ -14,6 +14,8 @@ import { InviteList } from '../../context/InviteList';
 
 const Member = ({ member }) => {
 
+  console.log(member)
+
   const { groupId } = useParams();
   const { currentGroup, getGroupData } = useContext(CurrentGroup)
 

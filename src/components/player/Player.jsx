@@ -5,6 +5,8 @@ import { IoTrophyOutline } from "react-icons/io5";
 
 const Player = ({ player }) => {
 
+  console.log(player)
+
   const playerClass = player.turn ? "turn"
     : player.score == 0
       ? "finished"
@@ -36,7 +38,7 @@ const Player = ({ player }) => {
           ) : (
             <span className="score">
               <IoTrophyOutline className="trophy" />
-              S:{player.score}
+              S:{player.place}
             </span>
           )}
 
