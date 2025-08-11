@@ -116,7 +116,7 @@ const Member = ({ member }) => {
           <h1>{member.username}</h1>
           <div className="wins">
             <IoTrophyOutline className='icon' />
-            <span>{member.num1st}</span>
+            <span>{member.n1st}</span>
           </div>
         </div>
         {currentGroup.role == "admin" && !owner && <div className="rightM" onClick={(e) => { setTest(!test) }}>

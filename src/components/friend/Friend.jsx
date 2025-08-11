@@ -9,19 +9,20 @@ import { RiVipCrownLine } from "react-icons/ri";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { IoTrophyOutline } from "react-icons/io5";
+import { InviteList } from '../../context/InviteList';
 
 
 const Friend = ({ friend }) => {
 
 
-
   const queryClient = useQueryClient();
 
+
   //////
-  //Kick player logic
+  //Unfriend fun
   //////
 
-  const kickPlayer = async () => {
+  const unfriendFun = async () => {
     try {
 
       console.log("Unfriendam id " + friend.id)
@@ -34,7 +35,7 @@ const Friend = ({ friend }) => {
   }
 
   const muatationUnfriend = useMutation({
-    mutationFn: kickPlayer,
+    mutationFn: unfriendFun,
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['friends'] })
@@ -53,22 +54,24 @@ const Friend = ({ friend }) => {
 
   const [test, setTest] = useState(false)
 
-  //   const handleInviteList =() =>{
-  //     handleToggleSelect(member.userId);
-  //   }
 
+  const { handleToggleSelect } = useContext(InviteList)
+
+  const handleInviteList = () => {
+    handleToggleSelect(friend.id);
+  }
   return (
     <div className="cardMember">
       <div className="upM">
         <div className="leftM">
 
 
-          <input type="checkbox" />
+          <input type="checkbox" onClick={handleInviteList} />
 
           <img src="https://icon2.cleanpng.com/20231228/czc/transparent-pink-flamingo-pink-flamingo-cartoon-with-black-beak-closed-1710949833207.webp" alt="" />
           <h1>{friend.username}</h1>
           <div className="wins">
-            <IoTrophyOutline className='icon' />
+            {/* <IoTrophyOutline className='icon' /> */}
             <span>{friend.num1st}</span>
           </div>
         </div>

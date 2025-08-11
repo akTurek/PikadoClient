@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import "./player.scss"
 import { GameContext } from '../../context/GameContext';
+import { IoTrophyOutline } from "react-icons/io5";
 
 const Player = ({ player }) => {
 
@@ -30,7 +31,14 @@ const Player = ({ player }) => {
           <span>{player.username}</span>
         </div>
         <div className="right">
-          {player.score > 0 ? <span>S:{player.score}</span> : <span>P:{player.place}</span>}
+          {player.score > 0 ? (
+            <span>S:{player.score}</span>
+          ) : (
+            <span className="score">
+              <IoTrophyOutline className="trophy" />
+              S:{player.score}
+            </span>
+          )}
 
         </div>
       </div>

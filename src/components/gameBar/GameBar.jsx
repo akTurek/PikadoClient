@@ -9,6 +9,8 @@ const GameBar = () => {
   const queryClient = useQueryClient();
   const { gameContext } = useContext(GameContext)
 
+  const [error, setError] = useState(null);
+
   const [scoreData, setScoreData] = useState({
     mul1: 1,
     score1: 1,
@@ -24,6 +26,23 @@ const GameBar = () => {
   };
 
 
+  const allowedScores = new Set([...Array(20).keys()].map(i => i + 1).concat([25, 50]));
+  const isValidMul = (m) => [1, 2, 3].includes(Number(m));
+  const isValidScore = (s) => allowedScores.has(Number(s));
+
+  const noTripleBull = (s, m) => (s === 25 || s === 50) ? Number(m) <= 2 : true;
+
+  const validateAll = (d) => {
+    const mulOk =
+      isValidMul(d.mul1) && isValidMul(d.mul2) && isValidMul(d.mul3);
+    const scoreOk =
+      isValidScore(d.score1) && isValidScore(d.score2) && isValidScore(d.score3);
+    const bullOk =
+      noTripleBull(d.score1, d.mul1) &&
+      noTripleBull(d.score2, d.mul2) &&
+      noTripleBull(d.score3, d.mul3);
+    return mulOk && scoreOk && bullOk;
+  };
 
   //////
   //Update score
@@ -52,7 +71,12 @@ const GameBar = () => {
   })
 
   const handleScoreUpdate = () => {
+    if (!validateAll(scoreData)) {
+      setError("Neveljaven vnos");
+      return;
+    }
     muatationUpdateScore.mutate()
+    setError(null)
   }
 
   return (
@@ -74,7 +98,7 @@ const GameBar = () => {
         <span>x</span>
         <input type="text" name='score3' defaultValue={1} onChange={handleChange} />
       </div>
-
+      {error && <div className="error">{error}</div>}
       <button onClick={() => handleScoreUpdate()}>Enter</button>
 
     </div>

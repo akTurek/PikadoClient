@@ -6,6 +6,7 @@ import { GameContext } from '../../context/GameContext';
 import { AuthContext } from '../../context/AuthProvider';
 import { makeRequest } from '../../helpers/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 
 const GameNavBar = () => {
@@ -13,6 +14,7 @@ const GameNavBar = () => {
     const { gameContext, setGameContext } = useContext(GameContext)
     const { currentUser } = useContext(AuthContext)
     const queryClient = useQueryClient();
+    const navigate = useNavigate()
 
     const setGameStatus = async (status) => {
 
@@ -43,16 +45,20 @@ const GameNavBar = () => {
     }
 
 
-    const leaveGame = async (status) => {
+    const leaveGame = async () => {
 
         try {
-
-            const res = await makeRequest.delite(`/game/leave/${gameContext.gameId}`)
-            setGameContext(null)
+            const res = await makeRequest.delete(`/game/leave/${gameContext.gameId}/${gameContext.playerId}`)
 
         } catch (error) {
             throw error
         }
+    }
+
+    const handleLeave = async (e) => {
+        await leaveGame()
+        setGameContext(null)
+        navigate("/")
     }
 
 
@@ -72,21 +78,30 @@ const GameNavBar = () => {
                             <span>Finish Game</span>
                         </div>
                     )}
-                    <div className="itemAGNB" onClick={() => handleChangeStatus("cancelled")}>
-                        <MdOutlineCancel className='icon' />
-                        <span>Cancel Game</span>
-                    </div>
+                    {gameContext.gameStatus !== 'finished' ? (
+                        <div className="itemAGNB" onClick={() => handleChangeStatus('cancelled')}>
+                            <MdOutlineCancel className="icon" />
+                            <span>Cancel Game</span>
+                        </div>
+                    ) : (
+                        <div className="itemGNB" onClick={() => leaveGame()} >
+                            <CiLogout className="icon" />
+                            <span>Leave Game</span>
+                        </div>
+                    )}
                 </div>
 
+
             ) : (
-                <div className="itemGNB">
+                <div className="itemGNB" onClick={() => leaveGame()}>
                     <CiLogout className='icon' />
                     <span>Leave Game</span>
                 </div>
 
-            )}
+            )
+            }
 
-        </div>
+        </div >
     )
 }
 
