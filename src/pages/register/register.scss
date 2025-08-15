@@ -25,6 +25,10 @@
         align-items: center;
         justify-content: center;
 
+        h1 {
+          color: themed(textColor);
+        }
+
         .inputs {
           display: flex;
           flex-direction: column;

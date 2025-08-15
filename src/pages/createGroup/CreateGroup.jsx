@@ -55,7 +55,7 @@ export const CreateGroup = () => {
                     <span>Password</span>
                     <input name="password2" type="password" onChange={handleChange} />
                 </div>
-                `{error && <span>{error}</span>}`
+                {error && <span>{error}</span>}
                 <div className="buttons">
                     <button onClick={handleClick}>Create</button>
                     <button>Cancle</button>
