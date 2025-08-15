@@ -14,17 +14,20 @@ const Login = () => {
     password: "",
   });
 
+  const [error, setError] = useState(false);
+
   const handleChange = (e) => {
     setLogInData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     console.log(logInData)
   };
 
   const handleClick = async (e) => {
-    e.preventDefault();
     try {
       await logInFun(logInData);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
+      setError(true)
+      console.log(error)
     }
   };
 
@@ -40,9 +43,11 @@ const Login = () => {
     <div className='login'>
       <div className="card">
         <div className="left">
+          <h1>Log In</h1>
           <div className="inputs">
             <input name='username' type="text" placeholder='username' onChange={handleChange} />
             <input name='password' type="password" placeholder='********' onChange={handleChange} />
+            `{error && <span>Invalid data</span>}`
           </div>
           <div className="buttons">
             <button onClick={handleClick}>Log In</button>

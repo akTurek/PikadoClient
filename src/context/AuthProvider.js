@@ -15,7 +15,9 @@ export const AuthContextProvider = ({ children }) => {
       const userData = await makeRequest.post("/users/login", inputs);
       console.log("prejet user data " + userData.data);
       setCurrentUser(userData.data);
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logOut = async () => {
